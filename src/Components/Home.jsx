@@ -41,13 +41,14 @@ const Home = () => {
       {/* Blob ánh sáng nền */}
       <motion.div
         key={current.name}
-        className="absolute top-1/3 left-1/4 w-[600px] h-[600px] rounded-full filter blur-3xl opacity-80 mix-blend-screen animate-blob z-0"
+        className="absolute top-40% left-0 w-[450px] h-[450px] rounded-full filter blur-3xl opacity-80 mix-blend-screen animate-blob z-0"
         style={{ backgroundColor: current.bg }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.7 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.8 }}
       />
+
 
       <div className="container mx-auto relative z-10 flex flex-col-reverse md:flex-row justify-between items-center h-full px-6">
         {/* Ảnh nhân vật */}

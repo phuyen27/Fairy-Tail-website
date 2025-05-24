@@ -9,8 +9,8 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="bg-rose-300 fixed top-0 left-0 right-0 w-full h-16 flex items-center justify-between px-10 shadow-md z-50">
-      <img src="/img/logo.webp" alt="logo" className="h-10 cursor-pointer" />
+    <div className="bg-rose-300/80 fixed top-0 left-0 right-0 w-full h-16 flex items-center justify-between px-10 shadow-md z-50 backdrop-blur-md">
+<img src="/img/logo.webp" alt="logo" className="h-10 cursor-pointer" />
 
       <div className="flex gap-6">
         {links.map((link, index) => (
