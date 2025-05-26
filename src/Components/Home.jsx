@@ -1,21 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Home = () => {
+const Home = ({onCharacterChange}) => {
+
+
   const figures = [
     {
       src: '/img/natsu.png',
       name: 'Natsu Dragneel',
       descrip: 'Natsu là một Sát Long Nhân thuộc hội pháp sư Fairy Tail, nổi tiếng với tính cách nóng nảy và trái tim nhân hậu.',
       color: 'text-rose-500',
-      bg: '#fb7185' // hồng đỏ
+      bg: '#fb7185'
     },
     {
       src: '/img/lucy.webp',
       name: 'Lucy Heartfilia',
       descrip: 'Lucy là một pháp sư tinh linh thông minh, tốt bụng và là thành viên trung thành của Fairy Tail.',
       color: 'text-yellow-400',
-      bg: '#facc15' // vàng
+      bg: '#facc15'
     },
     {
       src: '/img/gray.webp',
@@ -30,11 +32,38 @@ const Home = () => {
       descrip: 'Erza là một pháp sư giáp chiến cực kỳ mạnh mẽ, nổi tiếng với tính kỷ luật và lòng trung thành.',
       color: 'text-red-600',
       bg: '#dc2626'
+    },
+    {
+      src: '/img/wendy.webp',
+      name: 'Wendy Marvell',
+      descrip: 'Erza là một pháp sư giáp chiến cực kỳ mạnh mẽ, nổi tiếng với tính kỷ luật và lòng trung thành.',
+      color: 'text-blue-300',
+      bg: '#60a5fa'
     }
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const current = figures[currentIndex];
+
+  // Parallax ref
+  const imageRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      if (imageRef.current) {
+        imageRef.current.style.transform = `translateY(${scrollY * -0.15}px)`; // parallax effect
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+   useEffect(() => {
+    if (onCharacterChange) {
+      onCharacterChange(current.bg);
+    }
+  }, [currentIndex]);
 
   return (
     <section className="relative w-full h-screen overflow-hidden bg-black text-white">
@@ -49,13 +78,13 @@ const Home = () => {
         transition={{ duration: 0.8 }}
       />
 
-
       <div className="container mx-auto relative z-10 flex flex-col-reverse md:flex-row justify-between items-center h-full px-6">
-        {/* Ảnh nhân vật */}
+        {/* Ảnh nhân vật chính */}
         <div className="flex">
           <AnimatePresence mode="wait">
             <motion.img
               key={current.src}
+              ref={imageRef}
               src={current.src}
               alt={current.name}
               className="h-[80vh] object-contain"

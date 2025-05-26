@@ -1,15 +1,35 @@
 import React from 'react'
-import { motion } from 'framer-motion'
+import { motion, useAnimation } from 'framer-motion'
+import { useEffect } from 'react'
 
-const Author = () => {
+const Author = ({ color }) => {
+  const controls = useAnimation()
+
+  useEffect(() => {
+    controls.start({ backgroundColor: color, transition: { duration: 1 } })
+  }, [color])
+
   return (
-    <section id="author" className="min-h-screen bg-gradient-to-b from-black to-indigo-900 text-white flex items-center justify-center px-6 py-20">
+    <section
+      id="author"
+      className="min-h-screen text-white flex items-center justify-center px-6 py-20 relative overflow-hidden"
+    >
+      {/* Background animate từ đen đến màu */}
+      <motion.div
+        initial={{ backgroundColor: 'black' }}
+        animate={controls}
+        className="absolute inset-0 -z-10"
+        style={{
+          background: `linear-gradient(to bottom, black 0%, ${color}cc 100%)`,
+        }}
+      />
+      
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="max-w-3xl text-center"
+        className="max-w-3xl text-center relative z-10"
       >
         <h2 className="text-4xl md:text-5xl font-bold text-indigo-300 mb-6">About the Author</h2>
         <p className="text-lg text-gray-200 leading-relaxed">
@@ -21,7 +41,7 @@ const Author = () => {
         </p>
         <div className="mt-8 flex justify-center">
           <img
-            src="/img/hiro-mashima.jpg"
+            src="/img/author.webp"
             alt="Hiro Mashima"
             className="w-40 h-40 object-cover rounded-full border-4 border-indigo-500 shadow-lg"
           />
