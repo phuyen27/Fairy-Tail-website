@@ -66,7 +66,7 @@ const Home = ({onCharacterChange}) => {
   }, [currentIndex]);
 
   return (
-    <section className="relative w-full h-screen overflow-hidden bg-black text-white">
+    <section className="relative w-full h-screen overflow-hidden bg-black text-white pt-20" id='home'>
       {/* Blob ánh sáng nền */}
       <motion.div
         key={current.name}
@@ -87,7 +87,7 @@ const Home = ({onCharacterChange}) => {
               ref={imageRef}
               src={current.src}
               alt={current.name}
-              className="h-[80vh] object-contain"
+              className="h-[60vh]  lg:h-[80vh] object-contain"
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 30 }}

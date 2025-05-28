@@ -55,6 +55,8 @@ const movies = [
   }
 ];
 const Movies = ({ color ,onSelectMovie }) => {
+
+  
   return (
     <section
       className="p-10 min-h-screen text-white"
