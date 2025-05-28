@@ -12,7 +12,7 @@ function App() {
       <Navbar color={appColor} />
       <Home onCharacterChange = {setAppColor}/>
       <Author color = {appColor}/>
-      <Movies/>
+      <Movies color={appColor} />
     </>
   )
 }

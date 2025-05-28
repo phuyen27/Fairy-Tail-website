@@ -14,7 +14,7 @@ const Author = ({ color }) => {
       id="author"
       className="min-h-screen text-white flex items-center justify-center px-6 py-20 relative overflow-hidden"
     >
-      {/* Background animate từ đen đến màu */}
+      
       <motion.div
         initial={{ backgroundColor: 'black' }}
         animate={controls}
