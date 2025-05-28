@@ -5,42 +5,43 @@ const Home = ({onCharacterChange}) => {
 
 
   const figures = [
-    {
-      src: '/img/natsu.png',
-      name: 'Natsu Dragneel',
-      descrip: 'Natsu là một Sát Long Nhân thuộc hội pháp sư Fairy Tail, nổi tiếng với tính cách nóng nảy và trái tim nhân hậu.',
-      color: 'text-rose-500',
-      bg: '#fb7185'
-    },
-    {
-      src: '/img/lucy.webp',
-      name: 'Lucy Heartfilia',
-      descrip: 'Lucy là một pháp sư tinh linh thông minh, tốt bụng và là thành viên trung thành của Fairy Tail.',
-      color: 'text-yellow-400',
-      bg: '#facc15'
-    },
-    {
-      src: '/img/gray.webp',
-      name: 'Gray Fullbuster',
-      descrip: 'Gray là một pháp sư băng mạnh mẽ, có tính cách điềm tĩnh nhưng hay cãi nhau với Natsu.',
-      color: 'text-blue-500',
-      bg: '#3b82f6'
-    },
-    {
-      src: '/img/erza.png',
-      name: 'Erza Scarlet',
-      descrip: 'Erza là một pháp sư giáp chiến cực kỳ mạnh mẽ, nổi tiếng với tính kỷ luật và lòng trung thành.',
-      color: 'text-red-600',
-      bg: '#dc2626'
-    },
-    {
-      src: '/img/wendy.webp',
-      name: 'Wendy Marvell',
-      descrip: 'Erza là một pháp sư giáp chiến cực kỳ mạnh mẽ, nổi tiếng với tính kỷ luật và lòng trung thành.',
-      color: 'text-blue-300',
-      bg: '#60a5fa'
-    }
-  ];
+  {
+    src: '/img/natsu.png',
+    name: 'Natsu Dragneel',
+    descrip: 'Natsu is a Dragon Slayer wizard of the Fairy Tail guild, known for his fiery personality and kind heart.',
+    color: 'text-rose-500',
+    bg: '#fb7185'
+  },
+  {
+    src: '/img/lucy.webp',
+    name: 'Lucy Heartfilia',
+    descrip: 'Lucy is a smart and kind Celestial Spirit Mage, and a loyal member of Fairy Tail.',
+    color: 'text-yellow-400',
+    bg: '#facc15'
+  },
+  {
+    src: '/img/gray.webp',
+    name: 'Gray Fullbuster',
+    descrip: 'Gray is a powerful Ice Mage, calm by nature but often quarrels with Natsu.',
+    color: 'text-blue-500',
+    bg: '#3b82f6'
+  },
+  {
+    src: '/img/erza.png',
+    name: 'Erza Scarlet',
+    descrip: 'Erza is an incredibly strong Requip Mage, known for her discipline and unwavering loyalty.',
+    color: 'text-red-600',
+    bg: '#dc2626'
+  },
+  {
+    src: '/img/wendy.webp',
+    name: 'Wendy Marvell',
+    descrip: 'Wendy is a young Sky Dragon Slayer wizard, gentle and supportive, with powerful healing magic.',
+    color: 'text-blue-300',
+    bg: '#60a5fa'
+  }
+];
+
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const current = figures[currentIndex];
@@ -106,7 +107,10 @@ const Home = ({onCharacterChange}) => {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className={`text-5xl font-bold mb-4 ${current.color}`}>{current.name}</h2>
+              <h2 className={`text-5xl font-extrabold font-serif mb-4 tracking-wide md:text-6xl ${current.color}`}>
+                {current.name}
+              </h2>
+
               <p className="text-lg text-gray-200">{current.descrip}</p>
             </motion.div>
           </AnimatePresence>
