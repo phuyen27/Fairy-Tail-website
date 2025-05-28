@@ -2,6 +2,8 @@ import React from 'react'
 import { motion, useAnimation } from 'framer-motion'
 import { useEffect } from 'react'
 
+
+
 const Author = ({ color }) => {
   const controls = useAnimation()
 
@@ -20,8 +22,8 @@ const Author = ({ color }) => {
         animate={controls}
         className="absolute inset-0 -z-10"
         style={{
-          background: `linear-gradient(to bottom, black 0%, ${color}cc 100%)`,
-        }}
+        background: `linear-gradient(to top, ${color} -80%, black 100%)`,
+      }}
       />
       
       <motion.div

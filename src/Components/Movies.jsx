@@ -1,5 +1,15 @@
 import React from 'react';
 
+function hexToRgb(hex) {
+  hex = hex.replace('#', '');
+  const bigint = parseInt(hex, 16);
+  const r = (bigint >> 16) & 255;
+  const g = (bigint >> 8) & 255;
+  const b = bigint & 255;
+  return `${r}, ${g}, ${b}`;
+}
+
+
 const movies = [
   {
     title: 'Fairy Tail the Movie: Phoenix Priestess',
@@ -50,40 +60,56 @@ const Movies = ({ color }) => {
       className="p-10 min-h-screen text-white"
       id="movies"
       style={{
-        background: `linear-gradient(to bottom, ${color} 0%, black 100%)`,
+        background: `linear-gradient(to bottom, ${color} -80%, black 100%)`,
       }}
     >
       <h1 className="text-4xl font-bold mb-8 text-center">🎥 Fairy Tail Movies</h1>
 
-      <div className="flex gap-4 justify-center overflow-x-auto overflow-y-hidden py-10 whitespace-nowrap">
-  {movies.map((movie, idx) => (
-    <img
-      key={idx}
-      src={movie.image}
-      alt={movie.title}
-      style={{
-        width: '10%',
-        height: '300px',
-        objectFit: 'cover',
-        borderRadius: '10px',
-        border: '2px solid white',
-        transition: 'all 0.5s ease-in-out',
-        cursor: 'pointer',
-        display: 'inline-block',  // để nằm ngang trong nowrap
-        transform: idx % 2 === 1 ? 'translateY(-20px)' : 'none',
-      }}
-      onMouseEnter={e => {
-        e.currentTarget.style.width = '40%';
-        e.currentTarget.style.border = '5px solid brown';
-      }}
-      onMouseLeave={e => {
-        e.currentTarget.style.width = '10%';
-        e.currentTarget.style.border = '2px solid white';
-      }}
-    />
-  ))}
-</div>
-
+        <div className="flex gap-4 justify-center overflow-hidden py-10 whitespace-nowrap">
+        {movies.map((movie, idx) => (
+          <div
+            key={idx}
+            className="relative inline-block group transition-all duration-500"
+            style={{
+              width: '10%',
+              height: '300px',
+              backgroundImage: `url(${movie.image})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              borderRadius: '10px',
+              border: '2px solid white',
+              cursor: 'pointer',
+              display: 'inline-block',
+              transform: idx % 2 === 1 ? 'translateY(-20px)' : 'none',
+              transition: 'all 0.5s ease-in-out',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.width = '30%';
+              e.currentTarget.style.border = '5px solid brown';
+              const overlay = e.currentTarget.querySelector('.overlay');
+              if (overlay) overlay.style.opacity = '1';
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.width = '10%';
+              e.currentTarget.style.border = '2px solid white';
+              const overlay = e.currentTarget.querySelector('.overlay');
+              if (overlay) overlay.style.opacity = '0';
+            }}
+          >
+            <div
+            className="overlay absolute inset-0 flex flex-col whitespace-pre-wrap items-center justify-center text-center px-2 transition-opacity duration-500"
+              style={{
+                opacity: 0,
+                borderRadius: '10px',
+                backgroundImage: `linear-gradient(to top, rgba(${hexToRgb(color)}, 0.85), rgba(0, 0, 0, 0.85))`,
+              }}
+            >
+              <p className="text-white text-lg font-semibold">{movie.title}</p> 
+              <p>{movie.year}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </section>
   );
 };
