@@ -54,7 +54,7 @@ const movies = [
     description: 'A fun OVA where the guild enjoys their day at a water amusement park — until chaos inevitably breaks out.',
   }
 ];
-const Movies = ({ color }) => {
+const Movies = ({ color ,onSelectMovie }) => {
   return (
     <section
       className="p-10 min-h-screen text-white"
@@ -83,6 +83,7 @@ const Movies = ({ color }) => {
               transform: idx % 2 === 1 ? 'translateY(-20px)' : 'none',
               transition: 'all 0.5s ease-in-out',
             }}
+           onClick={(e) => onSelectMovie(movie, e)}
             onMouseEnter={e => {
               e.currentTarget.style.width = '30%';
               e.currentTarget.style.border = '5px solid brown';
@@ -100,7 +101,7 @@ const Movies = ({ color }) => {
             className="overlay absolute inset-0 flex flex-col whitespace-pre-wrap items-center justify-center text-center px-2 transition-opacity duration-500"
               style={{
                 opacity: 0,
-                borderRadius: '10px',
+                borderRadius: '5px',
                 backgroundImage: `linear-gradient(to top, rgba(${hexToRgb(color)}, 0.85), rgba(0, 0, 0, 0.85))`,
               }}
             >
