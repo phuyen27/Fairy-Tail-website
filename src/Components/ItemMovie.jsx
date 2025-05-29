@@ -26,7 +26,7 @@ const ItemMovie = ({ color, movie, onBack, clickPos }) => {
 
   return (
     <section
-      className="p-10 min-h-screen text-white bg-black relative overflow-hidden"
+      className="p-10 min-h-screen text-white relative overflow-hidden"
       style={{ background: `linear-gradient(to bottom, ${color} -80%, black 100%)` }}
     >
       <div className="flex flex-col md:flex-row items-center justify-center gap-10">

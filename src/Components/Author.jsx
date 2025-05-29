@@ -18,7 +18,7 @@ const Author = ({ color }) => {
     >
       
       <motion.div
-        initial={{ backgroundColor: 'black' }}
+       
         animate={controls}
         className="absolute inset-0 -z-10"
         style={{
@@ -34,7 +34,8 @@ const Author = ({ color }) => {
         className="max-w-3xl text-center relative z-10"
       >
         <h2 className="text-4xl md:text-5xl font-bold text-indigo-300 mb-6">About the Author</h2>
-        <p className="text-lg text-gray-200 leading-relaxed">
+        <p className="text-2x1 text-gray-200 leading-relaxed"
+        style={{ fontFamily: "'Merriweather', serif"}}>
           <strong>Hiro Mashima</strong> is a renowned Japanese manga artist, best known as the creator of the
           popular series <em>Fairy Tail</em>. Born on May 3, 1977, in Nagano, Japan, Mashima made his debut in 1999 with
           <em> Rave Master</em>. His vibrant storytelling, memorable characters, and dynamic action scenes have earned him

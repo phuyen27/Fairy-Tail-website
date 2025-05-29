@@ -10,9 +10,9 @@ import ItemMovie from './Components/ItemMovie'
 function App() {
  const [appColor, setAppColor] = useState('#fb7185');
   const [selectedMovie, setSelectedMovie] = useState(null);
-  const [clickPos, setClickPos] = useState({ x: 0, y: 0 }); // vị trí click
+  const [clickPos, setClickPos] = useState({ x: 0, y: 0 }); 
 
-  // Hàm nhận movie được click + vị trí click (event)
+ 
   const handleSelectMovie = (movie, event) => {
     const x = event.clientX;
     const y = event.clientY;

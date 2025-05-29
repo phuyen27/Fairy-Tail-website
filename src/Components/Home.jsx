@@ -5,6 +5,7 @@ const Home = ({onCharacterChange}) => {
 
 
   const figures = [
+ 
   {
     src: '/img/natsu.png',
     name: 'Natsu Dragneel',
@@ -33,33 +34,28 @@ const Home = ({onCharacterChange}) => {
     color: 'text-red-600',
     bg: '#dc2626'
   },
+   {
+    src: '/img/Makarov.webp',
+    name: 'Makarov Dreyar',
+    descrip: 'Makarov is the wise and powerful master of the Fairy Tail guild, known for his immense magic and caring nature towards his guild members.',
+    color: 'text-green-600',
+    bg: '#22c55e' 
+  },
   {
-    src: '/img/wendy.webp',
-    name: 'Wendy Marvell',
-    descrip: 'Wendy is a young Sky Dragon Slayer wizard, gentle and supportive, with powerful healing magic.',
-    color: 'text-blue-300',
-    bg: '#60a5fa'
-  }
+  src: '/img/mirajane.png',
+  name: 'Mirajane Strauss',
+  descrip: 'Mirajane is an S-Class Mage with the powerful Satan Soul magic. Despite her gentle appearance, she is one of the strongest wizards in Fairy Tail.',
+  color: 'text-purple-400',
+  bg: '#c084fc' 
+  },
+
 ];
 
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const current = figures[currentIndex];
 
-  // Parallax ref
-  const imageRef = useRef(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      if (imageRef.current) {
-        imageRef.current.style.transform = `translateY(${scrollY * -0.15}px)`; // parallax effect
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
+  
    useEffect(() => {
     if (onCharacterChange) {
       onCharacterChange(current.bg);
@@ -85,7 +81,6 @@ const Home = ({onCharacterChange}) => {
           <AnimatePresence mode="wait">
             <motion.img
               key={current.src}
-              ref={imageRef}
               src={current.src}
               alt={current.name}
               className="h-[60vh]  lg:h-[80vh] object-contain"
@@ -111,24 +106,28 @@ const Home = ({onCharacterChange}) => {
                 {current.name}
               </h2>
 
-              <p className="text-lg text-gray-200">{current.descrip}</p>
+              <p className="text-lg text-gray-200"
+              style={{ fontFamily: "'Merriweather', serif"}}>{current.descrip}</p>
             </motion.div>
           </AnimatePresence>
         </div>
 
         {/* Thumbnails chọn nhân vật */}
-        <div className="absolute bottom-10 right-10 flex gap-4 bg-white/20 backdrop-blur-sm p-2 rounded-lg shadow-lg z-20">
-          {figures.map((figure, index) => (
-            <img
-              key={index}
-              src={figure.src}
-              alt={figure.name}
-              onClick={() => setCurrentIndex(index)}
-              className={`w-16 h-16 rounded-lg cursor-pointer object-cover border-2 transition-all duration-300
-                ${index === currentIndex ? 'border-blue-500 scale-105' : 'border-transparent hover:border-gray-400'}`}
-            />
-          ))}
+        <div className="absolute bottom-10 m-2 lg:right-10 flex bg-white/20 backdrop-blur-sm p-2 rounded-lg shadow-lg z-20 overflow-x-auto max-w-[90vw] lg:max-w-[460px]">
+          <div className="flex gap-4">
+            {figures.map((figure, index) => (
+              <img
+                key={index}
+                src={figure.src}
+                alt={figure.name}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-16 h-16 rounded-lg cursor-pointer object-cover border-2 transition-all duration-300
+                  ${index === currentIndex ? 'border-blue-500 scale-105' : 'border-transparent hover:border-gray-400'}`}
+              />
+            ))}
+          </div>
         </div>
+
       </div>
     </section>
   );
